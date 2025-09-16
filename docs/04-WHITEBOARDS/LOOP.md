@@ -1,5 +1,28 @@
 # Loop - Universal Component Pattern
 
+## 📂 Existing Loop Implementations
+
+### OOPS - LayoutSwitcher
+- **Location**: `/OOPS-STORS/src/components/LayoutSwitcher.tsx`
+- **Lines**: 105
+- **Features**: Hardcoded for layouts only
+
+### OOPS2 - Toolbar Component ⭐ ("WordPress Loop")
+- **Reference**: Log 022 (lines 49-72, 124-140)
+- **Location**: `/OOPS-STORS2/src/components/Toolbar.tsx`
+- **Key Innovation**: Universal data iteration
+  - Processes ANY data source (array or object)
+  - Generic active state handling
+  - Configurable item component
+  - Data-driven via theme JSON
+
+### Icon Generators (OOPS2)
+- **Reference**: Log 022 (lines 74-84)
+- **Location**: `/OOPS-STORS2/src/utils/iconGenerators.ts`
+- **Functions**: layoutIcon, toolIcon, layerIcon, numericIcon, letterIcon
+
+---
+
 ## 🚀 The Vision
 
 **ONE component to rule them all**: Instead of building LayoutSwitcher, CanvasControls, ToolPalette, FilterSelector, etc. as separate components, we have:

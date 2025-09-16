@@ -1,27 +1,754 @@
 {
+  "version": "1.0.0",
+  "name": "Studio One Theme",
+  "description": "Theme for Users",
+  "class": "one",
   "variables": {
-    "colors": {
-      "background": "#ffffff",
-      "text": "#000000",
-      "accent": "#007acc"
+    "color": {
+      "defaultValue": "none",
+      "type": "color",
+      "category": "colors",
+      "description": "Text color",
+      "cssProperty": "--color"
     },
-    "typography": {
-      "fontFamily": "system-ui, -apple-system, sans-serif",
-      "fontSize": "16px",
-      "lineHeight": "1.5"
+    "backgroundColor": {
+      "defaultValue": "none",
+      "type": "color",
+      "category": "colors",
+      "description": "Background color",
+      "cssProperty": "--background-color"
     },
-    "spacing": {
-      "element": "1rem",
-      "section": "2rem"
+    "borderColor": {
+      "defaultValue": "none",
+      "type": "color",
+      "category": "colors",
+      "description": "Border color",
+      "cssProperty": "--border-color"
+    },
+    "fill": {
+      "defaultValue": "none",
+      "type": "color",
+      "category": "colors",
+      "description": "SVG fill color",
+      "cssProperty": "--fill"
+    },
+    "stroke": {
+      "defaultValue": "none",
+      "type": "color",
+      "category": "colors",
+      "description": "SVG stroke color",
+      "cssProperty": "--stroke"
+    },
+    "accentColor": {
+      "defaultValue": "none",
+      "type": "color",
+      "category": "colors",
+      "description": "Accent color",
+      "cssProperty": "--accent-color"
+    },
+    "outlineColor": {
+      "defaultValue": "none",
+      "type": "color",
+      "category": "colors",
+      "description": "Focus outline color",
+      "cssProperty": "--outline-color"
+    },
+    "caretColor": {
+      "defaultValue": "none",
+      "type": "color",
+      "category": "colors",
+      "description": "Cursor color",
+      "cssProperty": "--caret-color"
+    },
+    "backgroundImage": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--background-image"
+    },
+    "maskImage": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--mask-image"
+    },
+    "backdropFilter": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--backdrop-filter"
+    },
+    "filter": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--filter"
+    },
+    "maskMode": {
+      "defaultValue": "alpha",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--mask-mode"
+    },
+    "maskRepeat": {
+      "defaultValue": "no-repeat",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--mask-repeat"
+    },
+    "maskPosition": {
+      "defaultValue": "center",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--mask-position"
+    },
+    "maskSize": {
+      "defaultValue": "contain",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--mask-size"
+    },
+    "backgroundSize": {
+      "defaultValue": "cover",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--background-size"
+    },
+    "backgroundPosition": {
+      "defaultValue": "center",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--background-position"
+    },
+    "backgroundRepeat": {
+      "defaultValue": "no-repeat",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--background-repeat"
+    },
+    "boxShadow": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--box-shadow"
+    },
+    "textShadow": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--text-shadow"
+    },
+    "opacity": {
+      "defaultValue": "1",
+      "type": "number",
+      "category": "visual",
+      "cssProperty": "--opacity"
+    },
+    "transform": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--transform"
+    },
+    "transformOrigin": {
+      "defaultValue": "center",
+      "type": "string",
+      "category": "visual",
+      "cssProperty": "--transform-origin"
+    },
+    "borderRadius": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--border-radius"
+    },
+    "borderWidth": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--border-width"
+    },
+    "borderStyle": {
+      "defaultValue": "solid",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--border-style"
+    },
+    "borderTopWidth": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--border-top-width"
+    },
+    "borderRightWidth": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--border-right-width"
+    },
+    "borderBottomWidth": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--border-bottom-width"
+    },
+    "borderLeftWidth": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--border-left-width"
+    },
+    "borderTopStyle": {
+      "defaultValue": "solid",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--border-top-style"
+    },
+    "borderRightStyle": {
+      "defaultValue": "solid",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--border-right-style"
+    },
+    "borderBottomStyle": {
+      "defaultValue": "solid",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--border-bottom-style"
+    },
+    "borderLeftStyle": {
+      "defaultValue": "solid",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--border-left-style"
+    },
+    "outlineWidth": {
+      "defaultValue": "0px",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--outline-width"
+    },
+    "outlineStyle": {
+      "defaultValue": "solid",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--outline-style"
+    },
+    "outlineOffset": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--outline-offset"
+    },
+    "strokeWidth": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "borders",
+      "cssProperty": "--stroke-width"
+    },
+    "display": {
+      "defaultValue": "block",
+      "type": "string",
+      "category": "behavior",
+      "cssProperty": "--display"
+    },
+    "position": {
+      "defaultValue": "relative",
+      "type": "string",
+      "category": "behavior",
+      "cssProperty": "--position"
+    },
+    "overflow": {
+      "defaultValue": "visible",
+      "type": "string",
+      "category": "behavior",
+      "cssProperty": "--overflow"
+    },
+    "overflowX": {
+      "defaultValue": "visible",
+      "type": "string",
+      "category": "behavior",
+      "cssProperty": "--overflow-x"
+    },
+    "overflowY": {
+      "defaultValue": "visible",
+      "type": "string",
+      "category": "behavior",
+      "cssProperty": "--overflow-y"
+    },
+    "visibility": {
+      "defaultValue": "visible",
+      "type": "string",
+      "category": "behavior",
+      "cssProperty": "--visibility"
+    },
+    "pointerEvents": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "behavior",
+      "cssProperty": "--pointer-events"
+    },
+    "userSelect": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "behavior",
+      "cssProperty": "--user-select"
+    },
+    "cursor": {
+      "defaultValue": "default",
+      "type": "string",
+      "category": "behavior",
+      "cssProperty": "--cursor"
+    },
+    "zIndex": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "behavior",
+      "cssProperty": "--z-index"
+    },
+    "fontFamily": {
+      "defaultValue": "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      "type": "string",
+      "category": "typography",
+      "cssProperty": "--font-family"
+    },
+    "fontSize": {
+      "defaultValue": "1rem",
+      "type": "string",
+      "category": "typography",
+      "cssProperty": "--font-size"
+    },
+    "fontWeight": {
+      "defaultValue": "400",
+      "type": "string",
+      "category": "typography",
+      "cssProperty": "--font-weight"
+    },
+    "fontStyle": {
+      "defaultValue": "normal",
+      "type": "string",
+      "category": "typography",
+      "cssProperty": "--font-style"
+    },
+    "lineHeight": {
+      "defaultValue": "1.5",
+      "type": "string",
+      "category": "typography",
+      "cssProperty": "--line-height"
+    },
+    "letterSpacing": {
+      "defaultValue": "normal",
+      "type": "string",
+      "category": "typography",
+      "cssProperty": "--letter-spacing"
+    },
+    "textAlign": {
+      "defaultValue": "left",
+      "type": "string",
+      "category": "typography",
+      "cssProperty": "--text-align"
+    },
+    "textDecoration": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "typography",
+      "cssProperty": "--text-decoration"
+    },
+    "textTransform": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "typography",
+      "cssProperty": "--text-transform"
+    },
+    "textOverflow": {
+      "defaultValue": "clip",
+      "type": "string",
+      "category": "typography",
+      "cssProperty": "--text-overflow"
+    },
+    "whiteSpace": {
+      "defaultValue": "normal",
+      "type": "string",
+      "category": "typography",
+      "cssProperty": "--white-space"
+    },
+    "wordBreak": {
+      "defaultValue": "normal",
+      "type": "string",
+      "category": "typography",
+      "cssProperty": "--word-break"
+    },
+    "wordWrap": {
+      "defaultValue": "normal",
+      "type": "string",
+      "category": "typography",
+      "cssProperty": "--word-wrap"
+    },
+    "verticalAlign": {
+      "defaultValue": "baseline",
+      "type": "string",
+      "category": "typography",
+      "cssProperty": "--vertical-align"
+    },
+    "width": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "sizing",
+      "cssProperty": "--width"
+    },
+    "height": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "sizing",
+      "cssProperty": "--height"
+    },
+    "minWidth": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "sizing",
+      "cssProperty": "--min-width"
+    },
+    "maxWidth": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "sizing",
+      "cssProperty": "--max-width"
+    },
+    "minHeight": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "sizing",
+      "cssProperty": "--min-height"
+    },
+    "maxHeight": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "sizing",
+      "cssProperty": "--max-height"
+    },
+    "aspectRatio": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "sizing",
+      "cssProperty": "--aspect-ratio"
+    },
+    "padding": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "spacing",
+      "cssProperty": "--padding"
+    },
+    "margin": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "spacing",
+      "cssProperty": "--margin"
+    },
+    "top": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "positioning",
+      "cssProperty": "--top"
+    },
+    "right": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "positioning",
+      "cssProperty": "--right"
+    },
+    "bottom": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "positioning",
+      "cssProperty": "--bottom"
+    },
+    "left": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "positioning",
+      "cssProperty": "--left"
+    },
+    "gap": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "layout",
+      "cssProperty": "--gap"
+    },
+    "justifyContent": {
+      "defaultValue": "flex-start",
+      "type": "string",
+      "category": "layout",
+      "cssProperty": "--justify-content"
+    },
+    "alignItems": {
+      "defaultValue": "stretch",
+      "type": "string",
+      "category": "layout",
+      "cssProperty": "--align-items"
+    },
+    "alignContent": {
+      "defaultValue": "stretch",
+      "type": "string",
+      "category": "layout",
+      "cssProperty": "--align-content"
+    },
+    "justifyItems": {
+      "defaultValue": "stretch",
+      "type": "string",
+      "category": "layout",
+      "cssProperty": "--justify-items"
+    },
+    "placeItems": {
+      "defaultValue": "stretch",
+      "type": "string",
+      "category": "layout",
+      "cssProperty": "--place-items"
+    },
+    "alignSelf": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "layout",
+      "cssProperty": "--align-self"
+    },
+    "justifySelf": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "layout",
+      "cssProperty": "--justify-self"
+    },
+    "placeSelf": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "layout",
+      "cssProperty": "--place-self"
+    },
+    "gridTemplateColumns": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "grid",
+      "cssProperty": "--grid-template-columns"
+    },
+    "gridTemplateRows": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "grid",
+      "cssProperty": "--grid-template-rows"
+    },
+    "gridTemplateAreas": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "grid",
+      "cssProperty": "--grid-template-areas"
+    },
+    "gridColumn": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "grid",
+      "cssProperty": "--grid-column"
+    },
+    "gridRow": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "grid",
+      "cssProperty": "--grid-row"
+    },
+    "gridArea": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "grid",
+      "cssProperty": "--grid-area"
+    },
+    "gridAutoColumns": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "grid",
+      "cssProperty": "--grid-auto-columns"
+    },
+    "gridAutoRows": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "grid",
+      "cssProperty": "--grid-auto-rows"
+    },
+    "gridAutoFlow": {
+      "defaultValue": "row",
+      "type": "string",
+      "category": "grid",
+      "cssProperty": "--grid-auto-flow"
+    },
+    "flexDirection": {
+      "defaultValue": "row",
+      "type": "string",
+      "category": "flex",
+      "cssProperty": "--flex-direction"
+    },
+    "flexWrap": {
+      "defaultValue": "nowrap",
+      "type": "string",
+      "category": "flex",
+      "cssProperty": "--flex-wrap"
+    },
+    "flexBasis": {
+      "defaultValue": "auto",
+      "type": "string",
+      "category": "flex",
+      "cssProperty": "--flex-basis"
+    },
+    "flexGrow": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "flex",
+      "cssProperty": "--flex-grow"
+    },
+    "flexShrink": {
+      "defaultValue": "1",
+      "type": "string",
+      "category": "flex",
+      "cssProperty": "--flex-shrink"
+    },
+    "order": {
+      "defaultValue": "0",
+      "type": "string",
+      "category": "flex",
+      "cssProperty": "--order"
+    },
+    "animation": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "animation",
+      "cssProperty": "--animation"
+    },
+    "transition": {
+      "defaultValue": "none",
+      "type": "string",
+      "category": "animation",
+      "cssProperty": "--transition"
+    }
+  },
+  "oneElement": {
+    "one": {
+      "display": "grid"
+    }
+  },
+  "presets": {
+    "base-elements": {
+      "wrapper": {
+        "position": "absolute",
+        "width": "200px",
+        "height": "200px",
+        "border-radius": "10px",
+        "background-color": "hsl(0, 0%, 50%)"
+      },
+      "image": {
+        "position": "absolute",
+        "display": "block",
+        "width": "200px",
+        "height": "200px",
+        "border-radius": "10px",
+        "overflow": "hidden",
+        "object-fit": "cover",
+        "_content": {
+          "type": "img",
+          "default": "https://studio-one-assets.studio-one.workers.dev/asset/fefc7b281fa5200a9bc1eff0402e9d7d036c5d867012c56c38da8637fe034aeb"
+        }
+      },
+      "text": {
+        "position": "absolute",
+        "cursor": "text",
+        "user-select": "text",
+        "-webkit-user-select": "text",
+        "_content": "Studio ONE",
+        "_editable": true
+      },
+      "text-md": {
+        "position": "absolute",
+        "padding": "1.5rem",
+        "background-color": "hsl(0, 0%, 98%)",
+        "border": "1px solid hsl(0, 0%, 90%)",
+        "border-radius": "8px",
+        "_content": "# Welcome to Studio ONE\n\nA **unified design system** that brings together:\n- Single element philosophy\n- Theme-driven styling\n- Content-first approach",
+        "_markdown": true
+      }
+    },
+    "looks": {
+      "primary": {
+          "background-color": "hsl(340, 37%, 52%)",
+          "color": "hsl(0, 0%, 100%)",
+          "border-color": "hsl(340, 37%, 35%)",
+          "outline-color": "hsl(340, 37%, 35%)",
+          "fill": "hsl(0, 0%, 100%)",
+          "stroke": "hsl(0, 0%, 60%)",
+          "caret-color": "hsl(0, 0%, 100%)",
+          "accent-color": "hsl(340, 37%, 35%)"
+        },
+        "test-color": {
+          "background-color": "hsl(33, 44%, 51%)",
+          "color": "hsl(0, 0%, 100%)"
+        },
+        "neutral-dark": {
+          "background-color": "hsl(0, 0%, 15%)",
+          "color": "hsl(0, 0%, 100%)",
+          "border-color": "hsl(0, 0%, 30%)",
+          "outline-color": "hsl(0, 0%, 30%)",
+          "fill": "hsl(0, 0%, 35%)",
+          "stroke": "hsl(0, 0%, 35%)",
+          "caret-color": "hsl(0, 0%, 50%)",
+          "accent-color": "hsl(0, 0%, 30%)"
+        },
+        "neutral-light": {
+          "background-color": "hsl(0, 0%, 100%)",
+          "color": "hsl(0, 0%, 10%)",
+          "border-color": "hsl(0, 0%, 70%)",
+          "outline-color": "hsl(0, 0%, 70%)",
+          "fill": "hsl(0, 0%, 35%)",
+          "stroke": "hsl(0, 0%, 35%)",
+          "caret-color": "hsl(0, 0%, 50%)",
+          "accent-color": "hsl(0, 0%, 70%)"
+        },
+        "ghost": {
+          "background-color": "hsl(0, 0%, 80%)",
+          "color": "hsl(0, 0%, 70%)",
+          "border-color": "hsl(0, 0%, 80%)",
+          "outline-color": "hsl(0, 0%, 80%)",
+          "fill": "hsl(0, 0%, 90%)",
+          "stroke": "hsl(0, 0%, 80%)",
+          "caret-color": "hsl(0, 0%, 70%)",
+          "accent-color": "hsl(0, 0%, 70%)"
+        },
+        "gradient-sunset": {
+          "background": "linear-gradient(135deg, hsl(340, 37%, 52%) 0%, hsl(33, 44%, 51%) 100%)",
+          "color": "hsl(0, 0%, 100%)"
+        },
+        "gradient-aurora": {
+          "background": "linear-gradient(45deg, hsl(340, 37%, 42%) 0%, hsl(340, 37%, 52%) 25%, hsl(33, 44%, 51%) 75%, hsl(33, 44%, 61%) 100%)",
+          "color": "hsl(0, 0%, 100%)"
+        },
+        "gradient-radial": {
+          "background": "radial-gradient(circle at 30% 30%, hsl(33, 44%, 61%) 0%, hsl(340, 37%, 52%) 60%, hsl(340, 37%, 32%) 100%)",
+          "color": "hsl(0, 0%, 100%)"
+        }
     }
   },
   "structure": {
-    "root": {
-      "fontFamily": "var(--typography-font-family)",
-      "fontSize": "var(--typography-font-size)",
-      "lineHeight": "var(--typography-line-height)",
-      "color": "var(--colors-text)",
-      "background": "var(--colors-background)"
+    "wrapper-element": {
+      "type": "one",
+      "presets": "wrapper gradient-sunset",
+      "data-element-type": "wrapper"
+    },
+    "text-element": {
+      "type": "one",
+      "presets": "text test-color",
+      "data-element-type": "text"
+    },
+    "image-element": {
+      "type": "one",
+      "presets": "image",
+      "data-element-type": "image"
+    },
+    "markdown-element": {
+      "type": "one",
+      "presets": "text-md",
+      "data-element-type": "markdown"
     }
   }
 }

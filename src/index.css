@@ -3,6 +3,11 @@
   box-sizing: border-box;
 }
 
+html, body, #root {
+  width: 100vw;
+  height: 100vh;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -11,4 +16,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Loading state */
+.loading {
+  display: grid;
+  place-items: center;
+  height: 100vh;
 }

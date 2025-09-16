@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { ONEconnect } from './SYSTEMS/one-connect';
 import { useONEstore } from './STORES/ONEstore';
 import { themeProcessor } from './SYSTEMS/theme-processor';
-import './App.css';
 
 function App() {
   const [themeLoaded, setThemeLoaded] = useState(false);
