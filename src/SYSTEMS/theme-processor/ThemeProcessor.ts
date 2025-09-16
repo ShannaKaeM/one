@@ -58,6 +58,13 @@ export class ThemeProcessor {
       });
     }
     
+    // Process presets
+    if (themeConfig.presets) {
+      cssLines.push('');
+      cssLines.push('/* Theme Presets */');
+      this.processPresets(themeConfig.presets, cssLines, themeName);
+    }
+    
     return cssLines.join('\n');
   }
 
@@ -78,14 +85,61 @@ export class ThemeProcessor {
     });
   }
 
+
   /**
-   * Process style properties
+   * Process presets into CSS classes
    */
-  private processStyles(styles: Record<string, any>, cssLines: string[]): void {
+  private processPresets(presets: Record<string, any>, cssLines: string[], themeName: string): void {
+    Object.entries(presets).forEach(([category, categoryPresets]) => {
+      cssLines.push(`/* ${category} presets */`);
+      
+      Object.entries(categoryPresets).forEach(([presetName, presetStyles]) => {
+        // Skip if not an object with styles
+        if (typeof presetStyles !== 'object') return;
+        
+        // Handle different selector types based on category
+        if (category === 'layouts' || category === 'looks') {
+          // Compound selector for layouts and looks
+          cssLines.push(`.${themeName}.${presetName} {`);
+        } else if (category === 'components') {
+          // Component-specific presets
+          Object.entries(presetStyles).forEach(([componentClass, componentStyles]) => {
+            cssLines.push(`.${themeName} .${componentClass} {`);
+            this.processStyles(componentStyles, cssLines);
+            cssLines.push('}');
+          });
+          return; // Skip the rest for component presets
+        } else {
+          // Default: descendant selector
+          cssLines.push(`.${themeName} .${presetName} {`);
+        }
+        
+        // Process regular styles
+        this.processStyles(presetStyles, cssLines);
+        
+        // Process state variations
+        if (presetStyles._states) {
+          Object.entries(presetStyles._states).forEach(([state, stateStyles]) => {
+            cssLines.push(`  &:${state} {`);
+            this.processStyles(stateStyles, cssLines, '    ');
+            cssLines.push(`  }`);
+          });
+        }
+        
+        cssLines.push('}');
+      });
+    });
+  }
+
+  /**
+   * Process style properties with optional indent
+   */
+  private processStyles(styles: Record<string, any>, cssLines: string[], indent = '  '): void {
     Object.entries(styles).forEach(([prop, value]) => {
+      if (prop.startsWith('_')) return; // Skip special properties
       if (typeof value === 'string' || typeof value === 'number') {
         const cssProp = this.camelToKebab(prop);
-        cssLines.push(`  ${cssProp}: ${value};`);
+        cssLines.push(`${indent}${cssProp}: ${value};`);
       }
     });
   }

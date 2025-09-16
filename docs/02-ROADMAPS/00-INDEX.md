@@ -70,7 +70,7 @@ Before starting any session, verify:
 - **Type**: Documentation only
 
 ### 01.03-ONEstore ✅
-**File**: `/src/STORES/ONEstore.ts` (~150 lines)
+**File**: `/src/stores/ONEstore.ts` (124 lines)
 - 3 actors pattern (Designer, Workspace, Projects)
 - Direct store access
 

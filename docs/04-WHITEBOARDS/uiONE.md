@@ -112,6 +112,41 @@
 
 ---
 
+## 🚀 Component Registration Options
+
+### **Option A: Pre-register uiONE**
+- Register single uiONE component in App.tsx
+- Every data-component in theme uses this same base
+- Use auto ID generation for unique instances
+- Add data-label for dev reference (NEVER for functionality)
+- Base element pre-hydrated with all presets
+- Challenge: How to accept presets not physically on element?
+
+### **Option B: data-component="uiONE" without registration**
+- Add uiONE as data-component value
+- ONEconnect creates divs automatically
+- Each gets unique ID from ONEconnect
+- Can target with presets using : syntax
+- Add presets like "sidebar" and it just works
+- No need for wrapper/inner div separation
+
+### **Option C: Pure theme-driven (no React)**
+- Forget React components entirely
+- Register components directly in UI theme
+- data-component can be any name user wants
+- Still gets unique ID for connections
+- Use structure keys for arrays (layout switcher)
+- Everything editable in UI - NO BLACK BOXES
+- Verify: If user changes data-component name, it updates not duplicates
+
+### **Key Principles Across All Options:**
+- Unique IDs for system connections (not user-facing names)
+- data-label only for developer reference
+- Keys in structure for array iteration
+- Everything visible and editable
+
+---
+
 ## 📋 Next Audits Needed
 
 1. **ONEconnect** - Check data resolution support

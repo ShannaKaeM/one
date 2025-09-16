@@ -21,7 +21,14 @@ export class StoreConnector {
     
     for (const part of pathParts) {
       if (value && typeof value === 'object') {
-        value = value[part];
+        // Handle array index access like activePresets[assetId]
+        if (part.includes('[') && part.includes(']')) {
+          const [arrayName, key] = part.split('[');
+          const cleanKey = key.replace(']', '');
+          value = value[arrayName]?.[cleanKey];
+        } else {
+          value = value[part];
+        }
       } else {
         return undefined;
       }

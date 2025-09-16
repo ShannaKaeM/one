@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ONEstore - All Features</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #007acc;
+            padding-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th {
+            background: #007acc;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            cursor: pointer;
+            user-select: none;
+        }
+        th:hover {
+            background: #005999;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover {
+            background: #f9f9f9;
+        }
+        .state {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .action {
+            background: #f3e5f5;
+            color: #7b1fa2;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .filter-buttons {
+            margin: 20px 0;
+        }
+        button {
+            margin-right: 10px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: #007acc;
+            color: white;
+        }
+        button:hover {
+            background: #005999;
+        }
+        button.active {
+            background: #ff6b6b;
+        }
+        .summary {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ONEstore - All Features</h1>
+        
+        <div class="filter-buttons">
+            <button onclick="filterTable('all')" class="active">Show All</button>
+            <button onclick="filterTable('state')">States Only</button>
+            <button onclick="filterTable('action')">Actions Only</button>
+        </div>
+
+        <table id="storeTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Name ↕</th>
+                    <th onclick="sortTable(1)">Type ↕</th>
+                    <th onclick="sortTable(2)">Group ↕</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>selectedAssets</td><td><span class="state">STATE</span></td><td>selection</td><td>IDs of selected items</td></tr>
+                <tr><td>activeAsset</td><td><span class="state">STATE</span></td><td>selection</td><td>Currently focused item</td></tr>
+                <tr><td>clipboard</td><td><span class="state">STATE</span></td><td>clipboard</td><td>What's copied</td></tr>
+                <tr><td>history</td><td><span class="state">STATE</span></td><td>clipboard</td><td>Undo/redo stack</td></tr>
+                <tr><td>activeTool</td><td><span class="state">STATE</span></td><td>canvas-tools</td><td>Current tool (select, move, etc)</td></tr>
+                <tr><td>isDragging</td><td><span class="state">STATE</span></td><td>canvas-tools</td><td>Currently dragging?</td></tr>
+                <tr><td>isResizing</td><td><span class="state">STATE</span></td><td>canvas-tools</td><td>Currently resizing?</td></tr>
+                <tr><td>isRotating</td><td><span class="state">STATE</span></td><td>canvas-tools</td><td>Currently rotating?</td></tr>
+                <tr><td>isGrouping</td><td><span class="state">STATE</span></td><td>canvas-tools</td><td>Currently grouping?</td></tr>
+                <tr><td>isPanning</td><td><span class="state">STATE</span></td><td>canvas-tools</td><td>Currently panning?</td></tr>
+                <tr><td>mode</td><td><span class="state">STATE</span></td><td>edit-modes</td><td>design/preview/present/library</td></tr>
+                <tr><td>currentView</td><td><span class="state">STATE</span></td><td>view-config</td><td>dashboard/canvas/library/split</td></tr>
+                <tr><td>zoom</td><td><span class="state">STATE</span></td><td>view-config</td><td>Zoom level</td></tr>
+                <tr><td>grid</td><td><span class="state">STATE</span></td><td>view-config</td><td>Show grid?</td></tr>
+                <tr><td>snap</td><td><span class="state">STATE</span></td><td>view-config</td><td>Snap to grid?</td></tr>
+                <tr><td>rulers</td><td><span class="state">STATE</span></td><td>view-config</td><td>Show rulers?</td></tr>
+                <tr><td>leftPanel</td><td><span class="state">STATE</span></td><td>panels</td><td>Library/layers visible?</td></tr>
+                <tr><td>rightPanel</td><td><span class="state">STATE</span></td><td>panels</td><td>Properties visible?</td></tr>
+                <tr><td>bottomPanel</td><td><span class="state">STATE</span></td><td>panels</td><td>Timeline visible?</td></tr>
+                <tr><td>libraryFilter</td><td><span class="state">STATE</span></td><td>library-view</td><td>all/elements/images/presets</td></tr>
+                <tr><td>librarySortBy</td><td><span class="state">STATE</span></td><td>library-view</td><td>name/date/type/size</td></tr>
+                <tr><td>libraryView</td><td><span class="state">STATE</span></td><td>library-view</td><td>grid/list</td></tr>
+                <tr><td>librarySearch</td><td><span class="state">STATE</span></td><td>library-view</td><td>Search string</td></tr>
+                <tr><td>assets</td><td><span class="state">STATE</span></td><td>assets</td><td>Array of ALL items</td></tr>
+                <tr><td>copy</td><td><span class="action">ACTION</span></td><td>clipboard</td><td>Copy selected</td></tr>
+                <tr><td>paste</td><td><span class="action">ACTION</span></td><td>clipboard</td><td>Paste from clipboard</td></tr>
+                <tr><td>cut</td><td><span class="action">ACTION</span></td><td>clipboard</td><td>Cut selected</td></tr>
+                <tr><td>undo</td><td><span class="action">ACTION</span></td><td>clipboard</td><td>Undo last action</td></tr>
+                <tr><td>redo</td><td><span class="action">ACTION</span></td><td>clipboard</td><td>Redo action</td></tr>
+                <tr><td>selectAsset</td><td><span class="action">ACTION</span></td><td>selection</td><td>Select item</td></tr>
+                <tr><td>selectMultiple</td><td><span class="action">ACTION</span></td><td>selection</td><td>Select multiple</td></tr>
+                <tr><td>clearSelection</td><td><span class="action">ACTION</span></td><td>selection</td><td>Deselect all</td></tr>
+                <tr><td>setTool</td><td><span class="action">ACTION</span></td><td>canvas-tools</td><td>Change active tool</td></tr>
+                <tr><td>setMode</td><td><span class="action">ACTION</span></td><td>edit-modes</td><td>Change edit mode</td></tr>
+                <tr><td>setView</td><td><span class="action">ACTION</span></td><td>view-config</td><td>Change current view</td></tr>
+                <tr><td>setZoom</td><td><span class="action">ACTION</span></td><td>view-config</td><td>Change zoom level</td></tr>
+                <tr><td>toggleGrid</td><td><span class="action">ACTION</span></td><td>view-config</td><td>Toggle grid</td></tr>
+                <tr><td>toggleSnap</td><td><span class="action">ACTION</span></td><td>view-config</td><td>Toggle snap</td></tr>
+                <tr><td>toggleRulers</td><td><span class="action">ACTION</span></td><td>view-config</td><td>Toggle rulers</td></tr>
+                <tr><td>togglePanel</td><td><span class="action">ACTION</span></td><td>panels</td><td>Show/hide panel</td></tr>
+                <tr><td>setLibraryFilter</td><td><span class="action">ACTION</span></td><td>library-view</td><td>Filter library</td></tr>
+                <tr><td>setLibrarySort</td><td><span class="action">ACTION</span></td><td>library-view</td><td>Sort library</td></tr>
+                <tr><td>setLibraryView</td><td><span class="action">ACTION</span></td><td>library-view</td><td>Grid/list view</td></tr>
+                <tr><td>searchLibrary</td><td><span class="action">ACTION</span></td><td>library-view</td><td>Search items</td></tr>
+                <tr><td>addAsset</td><td><span class="action">ACTION</span></td><td>assets</td><td>Add new item</td></tr>
+                <tr><td>updateAsset</td><td><span class="action">ACTION</span></td><td>assets</td><td>Update item</td></tr>
+                <tr><td>deleteAsset</td><td><span class="action">ACTION</span></td><td>assets</td><td>Delete item</td></tr>
+                <tr><td>duplicateAsset</td><td><span class="action">ACTION</span></td><td>assets</td><td>Duplicate item</td></tr>
+                <tr><td>groupAssets</td><td><span class="action">ACTION</span></td><td>assets</td><td>Group items</td></tr>
+                <tr><td>ungroupAsset</td><td><span class="action">ACTION</span></td><td>assets</td><td>Ungroup items</td></tr>
+                <tr><td>applyPreset</td><td><span class="action">ACTION</span></td><td>assets</td><td>Apply preset to item</td></tr>
+                <tr><td>moveToLibrary</td><td><span class="action">ACTION</span></td><td>assets</td><td>Save to library</td></tr>
+                <tr><td>importAsset</td><td><span class="action">ACTION</span></td><td>assets</td><td>Import file</td></tr>
+                <tr><td>exportAsset</td><td><span class="action">ACTION</span></td><td>assets</td><td>Export item</td></tr>
+                <tr><td>saveProject</td><td><span class="action">ACTION</span></td><td>assets</td><td>Save project</td></tr>
+                <tr><td>loadProject</td><td><span class="action">ACTION</span></td><td>assets</td><td>Load project</td></tr>
+            </tbody>
+        </table>
+
+        <div class="summary">
+            <h3>Summary</h3>
+            <p><strong>Total States:</strong> 24</p>
+            <p><strong>Total Actions:</strong> 32</p>
+            <p><strong>Groups:</strong> selection, clipboard, canvas-tools, edit-modes, view-config, panels, library-view, assets</p>
+        </div>
+    </div>
+
+    <script>
+        function sortTable(column) {
+            const table = document.getElementById("storeTable");
+            const rows = Array.from(table.rows).slice(1);
+            const isAscending = table.rows[0].cells[column].innerHTML.includes("↑");
+            
+            rows.sort((a, b) => {
+                const aValue = a.cells[column].textContent;
+                const bValue = b.cells[column].textContent;
+                return isAscending ? bValue.localeCompare(aValue) : aValue.localeCompare(bValue);
+            });
+            
+            rows.forEach(row => table.appendChild(row));
+            
+            // Update arrow
+            const headers = table.rows[0].cells;
+            for (let i = 0; i < headers.length - 1; i++) {
+                headers[i].innerHTML = headers[i].innerHTML.replace(/[↑↓]/, "↕");
+            }
+            headers[column].innerHTML = headers[column].innerHTML.replace(/[↕↑↓]/, isAscending ? "↓" : "↑");
+        }
+
+        function filterTable(type) {
+            const table = document.getElementById("storeTable");
+            const rows = Array.from(table.rows).slice(1);
+            
+            rows.forEach(row => {
+                const rowType = row.cells[1].textContent.toLowerCase();
+                if (type === 'all' || rowType.includes(type)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            // Update active button
+            document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

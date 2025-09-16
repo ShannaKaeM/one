@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ONEconnect } from './SYSTEMS/one-connect';
-import { useONEstore } from './STORES/ONEstore';
+import { useONEstore } from './stores/ONEstore';
 import { themeProcessor } from './SYSTEMS/theme-processor';
+import { presetManager } from './SYSTEMS/preset-manager';
 
 function App() {
   const [themeLoaded, setThemeLoaded] = useState(false);
@@ -25,6 +26,14 @@ function App() {
         const theme = themeProcessor.getTheme('ui');
         setUiTheme(theme);
         setThemeLoaded(true);
+        
+        // Initialize preset manager with theme
+        presetManager.updateAllAssets();
+        
+        // Set available presets in store
+        const allPresets = Object.values(theme.presets || {})
+          .flatMap(category => Object.keys(category));
+        useONEstore.getState().setAvailablePresets(allPresets);
       }
     });
   }, []);

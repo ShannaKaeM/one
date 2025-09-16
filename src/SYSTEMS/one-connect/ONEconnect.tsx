@@ -23,8 +23,8 @@ export const ONEconnect: React.FC<ONEConnectProps> = ({ theme, stores, component
   // Create store connector instance
   const storeConnector = useMemo(() => new StoreConnector(stores), [stores]);
 
-  // Get the active layout from theme structure
-  const layoutKey = theme.structure?.root?.layouts || 'default';
+  // Get the active layout from STORE, not hardcoded theme path!
+  const layoutKey = storeConnector.getValue('oneStore', 'currentView') || 'dashboard';
   
   // Look for layout definition in presets.layouts
   const layoutDef = theme.presets?.layouts?.[layoutKey];
@@ -88,11 +88,24 @@ export const ONEconnect: React.FC<ONEConnectProps> = ({ theme, stores, component
           });
         }
 
+        // Get active presets from store
+        const activePresets = storeConnector.getValue('oneStore', `activePresets.${componentId}`) || [];
+        
+        // Extract preset targets from component definition
+        const presetTargets = componentDef['data-preset-targets'] || [];
+        
+        // Build class names including presets
+        const wrapperClasses = [
+          'one-wrapper',
+          `${componentType}-wrapper`,
+          ...activePresets // Add active preset classes
+        ].join(' ');
+
         // Create wrapper with grid area
         return (
           <div 
             key={componentId}
-            className={`one-wrapper ${componentType}-wrapper`}
+            className={wrapperClasses}
             style={{ gridArea }}
             data-component={componentType}
             data-id={componentId}
