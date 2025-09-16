@@ -1,0 +1,27 @@
+{
+  "variables": {
+    "colors": {
+      "background": "#ffffff",
+      "text": "#000000",
+      "accent": "#007acc"
+    },
+    "typography": {
+      "fontFamily": "system-ui, -apple-system, sans-serif",
+      "fontSize": "16px",
+      "lineHeight": "1.5"
+    },
+    "spacing": {
+      "element": "1rem",
+      "section": "2rem"
+    }
+  },
+  "structure": {
+    "root": {
+      "fontFamily": "var(--typography-font-family)",
+      "fontSize": "var(--typography-font-size)",
+      "lineHeight": "var(--typography-line-height)",
+      "color": "var(--colors-text)",
+      "background": "var(--colors-background)"
+    }
+  }
+}

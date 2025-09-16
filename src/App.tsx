@@ -1,43 +1,47 @@
-import { useONEstore } from './stores/ONEstore';
+import { useEffect, useState } from 'react';
+import { ONEconnect } from './SYSTEMS/one-connect';
+import { useONEstore } from './STORES/ONEstore';
+import { themeProcessor } from './SYSTEMS/theme-processor';
 import './App.css';
 
 function App() {
-  // Get state and actions from ONEstore
-  const { 
-    projects, 
-    workspace,
-    toggleGrid,
-    toggleSnap,
-    setView
-  } = useONEstore();
+  const [themeLoaded, setThemeLoaded] = useState(false);
+  const [uiTheme, setUiTheme] = useState<any>(null);
 
+  // Component map - empty for now, ONEconnect will create divs!
+  const components = {
+    // Real components go here when needed
+    // For now, everything is just divs with data-component attributes
+  };
+
+  // Store hooks map
+  const stores = {
+    oneStore: useONEstore
+  };
+
+  useEffect(() => {
+    // Load UI theme
+    themeProcessor.applyTheme('ui').then(success => {
+      if (success) {
+        const theme = themeProcessor.getTheme('ui');
+        setUiTheme(theme);
+        setThemeLoaded(true);
+      }
+    });
+  }, []);
+
+  if (!themeLoaded || !uiTheme) {
+    return <div className="loading">Loading theme...</div>;
+  }
+
+  // Use ONEconnect with the theme structure
   return (
-    <div className="app-container">
-      {/* Simple test UI to verify store connection */}
-      <div className="test-panel">
-        <h1>{projects.projectName}</h1>
-        
-        <div className="info">
-          <p>Current View: {workspace.currentView}</p>
-          <p>Grid: {workspace.gridVisible ? 'ON' : 'OFF'}</p>
-          <p>Snap: {workspace.snapEnabled ? 'ON' : 'OFF'}</p>
-        </div>
-
-        <div className="controls">
-          <button onClick={toggleGrid}>
-            Toggle Grid
-          </button>
-          <button onClick={toggleSnap}>
-            Toggle Snap
-          </button>
-          <button onClick={() => setView('canvas')}>
-            Canvas View
-          </button>
-          <button onClick={() => setView('dashboard')}>
-            Dashboard View
-          </button>
-        </div>
-      </div>
+    <div className="ui">
+      <ONEconnect 
+        theme={uiTheme}
+        stores={stores}
+        components={components}
+      />
     </div>
   );
 }

@@ -24,6 +24,8 @@
 - [ ] Basic store connection (just ONEstore)
 - [ ] Render single component from theme
 - [ ] Direct store access (no events)
+- [ ] **NEW**: Include getGridArea() directly (no utils dependency)
+- [ ] **NEW**: Add generateComponentId() for dynamic components
 
 **Phase 2: Add When Needed**
 - [ ] Generic wrapper creation
@@ -79,12 +81,14 @@
 5. **Action Resolution** - String paths → functions
 6. **Wrapper System** - Auto grid areas (a-z)
 7. **Recursive Loading** - Nested components
+8. **Grid Area Assignment** - getGridArea() built-in (no utils)
+9. **Component ID Generation** - generateComponentId() for dynamic components
 
 ### External Dependencies (Minimal!)
 - **Stores**: Passed as hooks (not instances)
 - **Components**: Passed as map (no registry needed)
 - **Theme**: JSON configuration
-- **autoIdHelper**: Just for getGridArea()
+- ~~**autoIdHelper**~~ → Now built-in!
 
 ### What to Build (Simple Version)
 
