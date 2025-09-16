@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useONEstore } from './stores/ONEstore';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  // Get state and actions from ONEstore
+  const { 
+    projects, 
+    workspace,
+    toggleGrid,
+    toggleSnap,
+    setView
+  } = useONEstore();
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app-container">
+      {/* Simple test UI to verify store connection */}
+      <div className="test-panel">
+        <h1>{projects.projectName}</h1>
+        
+        <div className="info">
+          <p>Current View: {workspace.currentView}</p>
+          <p>Grid: {workspace.gridVisible ? 'ON' : 'OFF'}</p>
+          <p>Snap: {workspace.snapEnabled ? 'ON' : 'OFF'}</p>
+        </div>
+
+        <div className="controls">
+          <button onClick={toggleGrid}>
+            Toggle Grid
+          </button>
+          <button onClick={toggleSnap}>
+            Toggle Snap
+          </button>
+          <button onClick={() => setView('canvas')}>
+            Canvas View
+          </button>
+          <button onClick={() => setView('dashboard')}>
+            Dashboard View
+          </button>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
